@@ -26,28 +26,28 @@ public class JdbcIngredientRepository implements IngredientRepository{
                 this::mapRowToIngredient);
     }
 
-//    @Override
-//    public Ingredient findById(String id) {
-//        return jdbc.queryForObject(
-//                "select id, name, type from Ingredient where id=?",
-//                this::mapRowToIngredient, id);
-//    }
-
     @Override
     public Ingredient findById(String id) {
         return jdbc.queryForObject(
                 "select id, name, type from Ingredient where id=?",
-                new RowMapper<Ingredient>() {
-                    @Override
-                    public Ingredient mapRow(ResultSet rs, int rowNum)
-                            throws SQLException {
-                        return new Ingredient(
-                                rs.getString("id"),
-                                rs.getString("name"),
-                                Ingredient.Type.valueOf(rs.getString("type")));
-                    };
-                }, id);
+                this::mapRowToIngredient, id);
     }
+
+//    @Override
+//    public Ingredient findById(String id) {
+//        return jdbc.queryForObject(
+//                "select id, name, type from Ingredient where id=?",
+//                new RowMapper<Ingredient>() {
+//                    @Override
+//                    public Ingredient mapRow(ResultSet rs, int rowNum)
+//                            throws SQLException {
+//                        return new Ingredient(
+//                                rs.getString("id"),
+//                                rs.getString("name"),
+//                                Ingredient.Type.valueOf(rs.getString("type")));
+//                    };
+//                }, id);
+//    }
     private Ingredient mapRowToIngredient(ResultSet rs, int rowNum)
         throws SQLException {
             return new Ingredient(
