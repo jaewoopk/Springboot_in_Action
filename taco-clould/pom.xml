@@ -15,7 +15,7 @@
 	<description>Taco Cloud Example</description>
 	<properties>
 		<java.version>17</java.version>
-		<h2.version>1.4.196</h2.version>
+		<h2.version>2.1.214</h2.version>
 	</properties>
 	<dependencies>
 		<dependency>
